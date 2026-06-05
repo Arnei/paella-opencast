@@ -1,0 +1,118 @@
+.textbox-plugin-container {
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    gap: 0.5vh;
+    z-index: 100;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.textbox-plugin-details {
+    width: clamp(100px, 14vw, 220px);
+    border-radius: clamp(5px, 0.5vw, 10px);
+    font-size: clamp(14px, min(1vw, 1vh), 20px);
+
+    color: white;
+    background: #e5e7eb;
+
+    text-decoration: none;
+}
+
+/* remove default arrow */
+.textbox-plugin-summary {
+    list-style: none;
+}
+.textbox-plugin-summary::-webkit-details-marker {
+    display: none;
+}
+
+/* header layout */
+.textbox-plugin-summary {
+    display: grid;
+    grid-template-columns: 2em 1fr 2em;
+    cursor: pointer;
+}
+
+/* left white icon area */
+.textbox-plugin-icon {
+    background: #e5e7eb;
+    color: #1f2937;
+    display: grid;
+    place-items: center;
+    justify-self: center;
+    align-self: center;
+    font-weight: bold;
+
+    /* circle */
+    width: 1.4em;
+    height: 1.4em;
+    border: 0.12em solid #1f2937;
+    border-radius: 50%;
+}
+
+/* center dark blue title area */
+.textbox-plugin-title {
+  background: #4b5563;
+  color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  padding: 0.6em 0.35em;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* right arrow area */
+.textbox-plugin-toggle {
+    display: grid;
+    place-items: center;
+}
+
+/* arrow */
+.textbox-plugin-toggle::before {
+    content: "▽";
+    font-size: 1.2em;
+    color: #374151;
+    transition: transform 0.2s;
+}
+
+/* rotate arrow when open */
+.textbox-plugin-details[open] .textbox-plugin-toggle::before {
+    transform: rotate(180deg);
+}
+
+/* content layout (same column structure) */
+.textbox-plugin-content {
+    display: grid;
+    grid-template-columns: 2em 1fr 2em;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+/* keep white side bars */
+.textbox-plugin-content::before,
+.textbox-plugin-content::after {
+    content: "";
+}
+
+.textbox-plugin-content > * {
+    grid-column: 2;
+    min-width: 0;
+}
+
+/* center content background */
+.textbox-plugin-content {
+    color: #e5e7eb;
+
+    background: linear-gradient(
+      to right,
+      #e5e7eb 2em,
+      #4b5563 2em,
+      #4b5563 calc(100% - 2em),
+      #e5e7eb calc(100% - 2em)
+    );
+    padding: 0.5em 0.35em;
+}
