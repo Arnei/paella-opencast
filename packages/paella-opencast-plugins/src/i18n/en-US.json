@@ -26,5 +26,12 @@
     "Access the video editor to modify and enhance your video content.": "Access the video editor to modify and enhance your video content.",
 
     "Login": "Login",
-    "Log in to access additional features and personalized content.": "Log in to access additional features and personalized content."    
+    "Log in to access additional features and personalized content.": "Log in to access additional features and personalized content.",
+
+    "Quiz Skip": "Skip",
+    "Quiz Submit": "Submit",
+    "Quiz Try Again": "Try Again",
+    "Quiz Continue": "Continue",
+    "Quiz Correct Answers": "Correct answers",
+    "Quiz Correct Answers Missed": "Answers you missed"
 }

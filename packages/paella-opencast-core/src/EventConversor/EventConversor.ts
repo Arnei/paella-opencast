@@ -213,6 +213,50 @@ export class EventConversor {
         return captions;
     }
 
+    getTextboxes(event: Event): Manifest["textboxes"] {
+        const textboxes: Manifest["textboxes"] = [];
+
+        var tracks = event.tracks;
+        if (!(tracks instanceof Array)) { tracks = tracks ? [tracks] : []; }
+
+        // Read the textboxes from the tracks
+        tracks.forEach((potentialTextbox) => {
+            try {
+                let textboxes_regex = /^textboxes\/([^+]+)(\+(.+))?/g;
+                let textboxes_match = textboxes_regex.exec(potentialTextbox.flavor);
+
+                if (textboxes_match) {
+                    textboxes.push(potentialTextbox);
+                }
+            }
+            catch (err) {/**/}
+        });
+
+        return textboxes;
+    }
+
+    getQuizzes(event: Event): Manifest["quizzes"] {
+        const quizzes: Manifest["quizzes"] = [];
+
+        var tracks = event.tracks;
+        if (!(tracks instanceof Array)) { tracks = tracks ? [tracks] : []; }
+
+        // Read the quizzes from the tracks
+          tracks.forEach((potentialQuiz) => {
+            try {
+                let quizzes_regex = /^quizzes\/([^+]+)(\+(.+))?/g;
+                let quizzes_match = quizzes_regex.exec(potentialQuiz.flavor);
+
+                if (quizzes_match) {
+                    quizzes.push(potentialQuiz);
+                }
+            }
+            catch (err) {/**/}
+        });
+
+        return quizzes;
+    }
+
     // frameList functions
     getFrameList(event: Event): Manifest["frameList"] {
         const attachments = event.attachments ?? [];
@@ -411,6 +455,8 @@ export class EventConversor {
         const transcriptions = this.getTranscriptions(event);
         const preview = this.getPreviewUrl(event);
         const chapters = await this.getChapters(event);
+        const textboxes = this.getTextboxes(event);
+        const quizzes = this.getQuizzes(event);
 
         const result: Manifest = {
             metadata: {
@@ -422,7 +468,9 @@ export class EventConversor {
             captions,
             frameList,
             transcriptions,
-            chapters
+            chapters,
+            textboxes,
+            quizzes
         };
         return result;
     }

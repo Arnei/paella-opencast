@@ -7,6 +7,8 @@ import OpencastMultiVideoDynamicLayout from './plugins/org.opencast.paella.multi
 import OpencastMatomoUserTrackingDataPlugin, { type OpencastMatomoUserTrackingDataPluginConfig } from './plugins/org.opencast.paella.matomo.userTrackingDataPlugin';
 import OpencastRelatedVideosDataPlugin, { type OpencastRelatedVideosDataPluginConfig } from './plugins/org.opencast.paella.data.relatedVideosDataPlugin';
 import OpencastRelatedDocumentsDataPlugin, { type OpencastRelatedDocumentsDataPluginConfig } from './plugins/org.opencast.paella.data.relatedDocumentsDataPlugin';
+import TextBoxPlugin from './plugins/org.opencast.paella.textboxPlugin';
+import QuizPlugin from './plugins/org.opencast.paella.quizPlugin';
 
 
 export const opencastPlugins = [
@@ -100,6 +102,18 @@ export const opencastPlugins = [
                 }
             ]
         } satisfies OpencastRelatedDocumentsDataPluginConfig
+    },
+    {
+        plugin: TextBoxPlugin,
+        config: {
+            enabled: true
+        }
+    },
+    {
+        plugin: QuizPlugin,
+        config: {
+            enabled: true
+        }
     }
 ];
 
