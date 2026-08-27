@@ -1,4 +1,4 @@
-import { EventLogPlugin, Events, createElementWithHtmlText, type EventName } from '@asicupv/paella-core';
+import { EventLogPlugin, Events, createElementWithHtmlText } from '@asicupv/paella-core';
 import '../css/QuizPlugin.css';
 import OpencastPaellaPluginsModule from './OpencastPaellaPluginsModule';
 
@@ -69,7 +69,7 @@ export default class QuizPlugin extends EventLogPlugin {
     ];
   }
 
-  async onEvent(event: EventName, params: any) {
+  async onEvent(event: Events, params: any) {
     // Load info from Opencast
     if (event === Events.PLAYER_LOADED) {
       // TODO: Handle multiple quiz files
