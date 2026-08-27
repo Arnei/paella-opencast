@@ -1,4 +1,4 @@
-import { EventLogPlugin, Events, createElementWithHtmlText, type EventName } from '@asicupv/paella-core';
+import { EventLogPlugin, Events, createElementWithHtmlText } from '@asicupv/paella-core';
 import '../css/TextboxPlugin.css';
 import OpencastPaellaPluginsModule from './OpencastPaellaPluginsModule';
 
@@ -57,7 +57,7 @@ export default class TextBoxPlugin extends EventLogPlugin {
   }
 
 
-  async onEvent(event: EventName, params: any) {
+  async onEvent(event: Events, params: any) {
     // Load textbox info from Opencast
     if (event === Events.PLAYER_LOADED) {
       // TODO: Handle multiple textbox files

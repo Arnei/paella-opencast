@@ -2,6 +2,13 @@ import { Paella, type Chapter, type CaptionManifestItem, type Manifest, type Fra
 import { type Event, type MediaPackageElement, type Attachment, type Track } from '../Event';
 import { splitFlavor, timeToSeconds } from '../utils';
 
+declare module '@asicupv/paella-core' {
+    interface Manifest {
+        textboxes?: Track[];
+        quizzes?: Track[];
+    }
+}
+
 // const translate = (key: string): string => {
 //     return key;
 // }
