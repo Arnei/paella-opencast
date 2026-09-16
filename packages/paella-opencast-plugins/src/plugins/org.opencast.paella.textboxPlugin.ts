@@ -95,11 +95,14 @@ export default class TextBoxPlugin extends EventLogPlugin {
         <summary class="textbox-plugin-summary"> </summary>
       `, textbox);
 
+      const linkHtml = info.link
+        ? `</br><a href="${ info.link }" target="_blank" rel="noopener noreferrer">${ info.link }</a>`
+        : '';
+
       createElementWithHtmlText(`
         <div class="textbox-plugin-content">
           ${ info.text }
-          </br>
-          <a href=${ info.link } target="_blank" rel="noopener noreferrer">${ info.link }</a>
+          ${ linkHtml }
         </div>
       `, textbox);
 
