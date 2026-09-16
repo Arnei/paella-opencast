@@ -1,4 +1,4 @@
-import { EventLogPlugin, Events, createElementWithHtmlText } from '@asicupv/paella-core';
+import { EventLogPlugin, Events, createElement, createElementWithHtmlText } from '@asicupv/paella-core';
 import '../css/QuizPlugin.css';
 import OpencastPaellaPluginsModule from './OpencastPaellaPluginsModule';
 
@@ -122,9 +122,15 @@ export default class QuizPlugin extends EventLogPlugin {
       `, quizLeft);
 
       info.answers?.map((answer) => {
-        createElementWithHtmlText(`
-          <label><input type="checkbox" value="${answer.text}">${answer.text}</label>
-        `, answers);
+        // `<input>` is stripped by createElementWithHtmlText's sanitizer, so build it via
+        // paella-core's createElement() instead, which sets the tag directly and bypasses it
+        const label = createElement({ tag: 'label', parent: answers });
+        createElement({
+          tag: 'input',
+          attributes: { type: 'checkbox', value: answer.text },
+          parent: label,
+        });
+        label.appendChild(document.createTextNode(answer.text));
       });
 
       const bottomButtons = createElementWithHtmlText(`
